@@ -13,6 +13,7 @@ import AddressBanner from './AddressBanner';
 import RemoveManager from './RemoveManager';
 import ShadowBorderView from '../../components/View/ShadowBorderView';
 import { formatPhone, toastMessage, formatMoney } from '../../components/functions';
+import MajorHeader from '../../components/Header/MajorHeader';
 
 
 
@@ -67,6 +68,7 @@ const CartScreen = () => {
                 keyExtractor={(item) => item.id}
                 ListHeaderComponent={<>
                     <AddressBanner />
+                    <MajorHeader/>
                     {cartList.length !== 0 && <RemoveManager />}
                 </>}
                 renderItem={({ item }) => <CartItem item={item} />}

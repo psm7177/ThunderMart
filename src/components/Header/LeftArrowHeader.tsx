@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/AntDesign'
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
 import useNavigation from '../../hooks/useNavigation'
 import LinearGradient from 'react-native-linear-gradient';
+import { NavigationActions } from 'react-navigation'
 
 type LeftArrowHeaderProps = {
     title?: string,
@@ -20,7 +21,7 @@ const LeftArrowHeader: React.FunctionComponent<LeftArrowHeaderProps> = ({ title,
                     <TouchableWithoutFeedback
                         onPress={() => {
                             if (goBack) goBack()
-                            else navigation.goBack()
+                            else navigation.dispatch(NavigationActions.back())
                         }}
                     >
                         <Icon name='arrowleft' size={24} color='#000' />

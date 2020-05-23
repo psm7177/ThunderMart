@@ -7,6 +7,7 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
 import Icon2 from 'react-native-vector-icons/Fontisto'
 import useItemSearch from '../../hooks/useItemSearch'
 import { searchType } from '../../modules/ItemSearch'
+import { NavigationActions } from 'react-navigation'
 
 const ItemSearchScreen = () => {
     const navigation = useNavigation()
@@ -16,7 +17,7 @@ const ItemSearchScreen = () => {
 
 
     const onClose = () => {
-        navigation.navigate('MainBottomTab')
+        navigation.dispatch(NavigationActions.back())
     }
 
     const onSearch = () => {

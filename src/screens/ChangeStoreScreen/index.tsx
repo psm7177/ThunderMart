@@ -23,7 +23,7 @@ const ChangeStoreScreen = () => {
     const [storeList, setStoreList] = useState<store[]>([])
 
     if (presentAddress == null) {
-        navigation.navigate('MainBottomTab')
+        navigation.navigate('MajorStack')
         navigation.navigate('AddressStack')
         ToastAndroid.show('주소를 먼저 선택해주세요', ToastAndroid.SHORT)
     }
@@ -64,7 +64,7 @@ const ChangeStoreScreen = () => {
 
 
     const goBack = () => {
-        navigation.navigate("MainBottomTab")
+        navigation.navigate("MajorStack")
     }
 
     const renderItem = (item: ListRenderItemInfo<store>) =>
@@ -81,7 +81,7 @@ const ChangeStoreScreen = () => {
 
     return (
         <View style={{ flex: 1, backgroundColor: 'white' }}>
-            <LeftArrowHeader title='편의점 선택' goBack={() => navigation.navigate('MainBottomTab')} />
+            <LeftArrowHeader title='편의점 선택' goBack={() => navigation.navigate('MajorStack')} />
             <FlatList
                 style={{ flex: 1 }}
                 data={storeList}

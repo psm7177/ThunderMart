@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import { View, Text } from 'react-native'
-import useNavigation from '../../hooks/useNavigation'
+import React, { useEffect, useState } from 'react';
+import { View, Text } from 'react-native';
+import useNavigation from '../../hooks/useNavigation';
 
 import AddressHeader from '../../components/Header/AddressHeader';
 import SearchBar from './SearchBar';
+import MartHeader from '../../components/Header/MajorHeader';
 import CategoryGrid from './CategoryGrid';
 import { ScrollView } from 'react-native-gesture-handler';
 import SplashScreen from 'react-native-splash-screen';
 import { reset2SignIn } from '../../components/navigationResetActions';
-import useAuth from '../../hooks/useAuth'
+import useAuth from '../../hooks/useAuth';
+import BannerSlide from './BannerSlide';
+import BannerAds from './BannerAds';
+import CompanyInfo from './CompanyInfo';
 const { BoxShadow } = require('react-native-shadow')
 
 const HomeScreen = () => {
@@ -40,9 +44,12 @@ const HomeScreen = () => {
             style={{ flex: 1, backgroundColor: 'white' }}
         >
             <AddressHeader />
+            <MartHeader/>
+            <BannerSlide/>
             <CategoryGrid />
-            <SearchBar />
             <View style={{ height: 20 }} />
+            <BannerAds/>
+            <CompanyInfo/>
         </ScrollView>
     )
 }

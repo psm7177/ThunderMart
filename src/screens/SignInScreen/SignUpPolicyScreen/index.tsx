@@ -6,6 +6,7 @@ import SubmitButton from '../../../components/Button/SubmitButton'
 import { defaultFont } from '../../../components/style'
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
 import MaterialToggle from '../../../components/Button/MaterialToggle'
+import { NavigationActions } from 'react-navigation'
 
 
 type NavigationParams = {
@@ -36,7 +37,7 @@ const SignUpPolicyScreen = () => {
     const onSubmit = () => {
         if ((check.indexOf(false) !== -1)) return
         navigation.state.params?.signIn()
-        navigation.goBack()
+        navigation.dispatch(NavigationActions.back())
     }
 
     const onPolicy = (item: policyType) => {
@@ -61,7 +62,7 @@ const SignUpPolicyScreen = () => {
         <View style={{ flex: 1, backgroundColor: 'white' }}>
             <LeftArrowHeader
                 title='이용약관'
-                goBack={() => navigation.goBack()}
+                goBack={() => navigation.dispatch(NavigationActions.back())}
             />
             <FlatList
                 style={{ paddingTop: 40 }}

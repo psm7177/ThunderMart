@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { View, Text } from 'react-native'
 import { FlatGrid } from 'react-native-super-grid';
+
+import { SvgXml } from 'react-native-svg';
+
 import FastImage from 'react-native-fast-image'
 import { WIDTH, defaultFont, alignCenter } from '../../components/style';
 import useNavigation from '../../hooks/useNavigation';
@@ -13,69 +16,9 @@ import useCart from '../../hooks/useCart';
 import useAddress from '../../hooks/useAddress';
 import ShopIcon from '../../components/Icon/ShopIcon';
 
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
-const categorys = [ //서버로
-    {
-        name: '밥, 도시락',
-        key: "0",
-        image: require('../../asset/CategoryIcon/0.png')
-    },
-    {
-        name: '라면, 면',
-        key: "1",
-        image: require('../../asset/CategoryIcon/1.jpg')
-    },
-    {
-        name: '국, 찌개',
-        key: "2",
-        image: require('../../asset/CategoryIcon/2.jpg')
-    },
-    {
-        name: '요리, 반찬',
-        key: "3",
-        image: require('../../asset/CategoryIcon/3.jpg')
-    },
-    {
-        name: '분식, 야식',
-        key: "4",
-        image: require('../../asset/CategoryIcon/4.jpg')
-    },
-    {
-        name: '과일, 샐러드',
-        key: "5",
-        image: require('../../asset/CategoryIcon/5.jpg')
-    },
-    {
-        name: '아이스크림',
-        key: "6",
-        image: require('../../asset/CategoryIcon/6.jpg')
-    },
-    {
-        name: '생수, 음료',
-        key: "7",
-        image: require('../../asset/CategoryIcon/7.jpg')
-    },
-    {
-        name: '빵, 시리얼',
-        key: "8",
-        image: require('../../asset/CategoryIcon/8.jpg')
-    },
-    {
-        name: '과자',
-        key: "9",
-        image: require('../../asset/CategoryIcon/9.jpg')
-    },
-    {
-        name: '생활용품',
-        key: "10",
-        image: require('../../asset/CategoryIcon/10.jpg')
-    },
-    {
-        name: '커피플렉스',
-        key: "11",
-        image: require('../../asset/CategoryIcon/11.jpg')
-    },
-]
+import categorys from './CategoryIcon';
 
 
 const BOXSIZE = (WIDTH - 48) / 3
@@ -100,10 +43,6 @@ const CategoryGrid = () => {
 
 
     const onCategory = (categoryKey: string, category: string) => {
-        if (categoryKey == '11') {
-            navigation.navigate('CoffeeFlexScreen')
-            return
-        }
         navigation.navigate('CategoryDetailScreen', { categoryKey, category })
     }
 
@@ -123,11 +62,7 @@ const CategoryGrid = () => {
             onPress={() => onCategory(item.key, item.name)}
             style={{ padding: 10, alignItems: 'center', justifyContent: 'center', width: BOXSIZE, height: BOXSIZE }}
         >
-            <FastImage
-                style={{ width: '100%', height: BOXSIZE - 50 }}
-                source={item.image}
-                resizeMode='contain'
-            />
+            {item.image}
             <Text style={{ fontSize: 13, fontWeight: 'bold', marginTop: 6 }}>{item.name}</Text>
         </TouchableWithoutFeedback>
 
@@ -135,8 +70,38 @@ const CategoryGrid = () => {
 
     return (
         <>
+            <View style={{width:WIDTH, height:40, justifyContent:"center",alignItems:"center",shadowColor: "#000", shadowOffset: { width: 0, height: 1, }, shadowOpacity: 0.22,shadowRadius: 2.22,elevation: 3,backgroundColor:"#FFF",flexDirection:"row"}}><EvilIcons name="clock" size={25}/><Text>배달 시간 30분 ~ 45분 예상</Text></View>
             <View style={{ width: WIDTH - 40, alignSelf: 'center', borderColor: '#dbdbdb', borderRadius: 12, borderWidth: 1, backgroundColor: 'white', marginTop: 20 }}>
-                {
+            {presentAddress !== null 
+                ?
+                <>
+                    <View style={{ width: '100%', alignSelf: 'center', marginTop: 4, flexDirection: 'row', flexWrap: 'wrap', marginBottom: 6, justifyContent: 'center' }}>
+                        {categorys.map((item, index) => RenderItem(item, index))}
+                        {emptyArray.map((info, index) => RenderEmpty(index))}
+                    </View>
+                </>
+                :
+                <>
+                    <TouchableWithoutFeedback
+                        onPress={() => navigation.navigate('AddressStack')}
+                    >
+                        <View style={{ width: WIDTH - 30, alignSelf: 'center', height: 56, borderRadius: 16, alignItems: 'center', justifyContent: 'center' }}>
+                            <Text style={{ ...defaultFont }} >주소를 입력해주세요</Text>
+                        </View>
+                        <View style={{ height: 130, alignSelf: 'center', ...alignCenter, marginBottom: 10 }}>
+                            <FastImage
+                                style={{ height: 120, width: 120 }}
+                                source={require('../../asset/IconClear.png')}
+                                resizeMode='contain'
+                            />
+                        </View>
+                    </TouchableWithoutFeedback>
+                </>
+            } 
+                
+                
+                
+                {/*
                     presentAddress !== null
                         ?
                         !shopChange && shopType !== null
@@ -192,7 +157,7 @@ const CategoryGrid = () => {
                                     </>
                                     :
                                     <>
-                                        {/* 주변에 편의점이 없을때 */}
+                                        {/* 주변에 편의점이 없을때 }
                                     </>
                                 }
                             </>
@@ -214,7 +179,7 @@ const CategoryGrid = () => {
                                 </View>
                             </TouchableWithoutFeedback>
                         </>
-                }
+                            */}
 
             </View>
         </>

@@ -3,6 +3,7 @@ import { View, Text, ActivityIndicator } from 'react-native'
 import LeftArrowHeader from '../../../components/Header/LeftArrowHeader'
 import useNavigation from '../../../hooks/useNavigation'
 import Postcode from '../../../components/Postcode'
+import { NavigationActions } from 'react-navigation'
 
 interface NavigationParams {
     setBasicAddress: Function,
@@ -17,7 +18,7 @@ const SearchAddressScreen = () => {
     return (
         <View style={{ flex: 1, backgroundColor: 'white' }}>
 
-            <LeftArrowHeader goBack={() => navigation.goBack()} title='주소검색' />
+            <LeftArrowHeader goBack={() => navigation.dispatch(NavigationActions.back())} title='주소검색' />
             <View style={{ flex: 1, justifyContent: 'center' }} >
                 <Postcode
                     style={{ flex: 1 }}
@@ -27,9 +28,9 @@ const SearchAddressScreen = () => {
                         try {
                             navigation.state.params?.setBasicAddress(data.address)
                             navigation.state.params?.setContractionAddress(data.bname !== '' ? data.bname : data.address)
-                            navigation.goBack()
+                            navigation.dispatch(NavigationActions.back())
                         } catch (error) {
-                            navigation.goBack()
+                            navigation.dispatch(NavigationActions.back())
                         }
                     }}
                 />

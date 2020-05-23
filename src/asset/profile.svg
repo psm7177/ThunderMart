@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="40" viewBox="0 0 40 40">
+  <defs>
+    <filter id="프로필_사진" x="0" y="0" width="40" height="40" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="그룹_63" data-name="그룹 63" transform="translate(0 0)">
+      <circle id="프로필_사진-2" data-name="프로필 사진" cx="20" cy="20" r="20"  fill="#f5f5f5"/>
+    <g transform="translate(11, 10) scale(2)">
+      <path id="패스_199" data-name="패스 199"  d="M7.53,5.7A4.394,4.394,0,0,0,5.854,4.652a2.55,2.55,0,1,0-2.886,0A4.418,4.418,0,0,0,0,8.822H.689a3.722,3.722,0,1,1,7.444,0h.689A4.382,4.382,0,0,0,7.53,5.7ZM4.411,4.411A1.861,1.861,0,1,1,6.272,2.55,1.863,1.863,0,0,1,4.411,4.411Z" fill="#000" transform="translate(0)"/>
+    </g>
+  </g>
+</svg>

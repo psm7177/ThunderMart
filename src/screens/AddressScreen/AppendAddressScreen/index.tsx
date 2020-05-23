@@ -7,6 +7,7 @@ import useAddress from '../../../hooks/useAddress'
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
 import DefaultInput from '../../../components/Input/DefaultInput'
 import useShop from '../../../hooks/useShop'
+import { NavigationActions } from 'react-navigation'
 const { BoxShadow } = require('react-native-shadow')
 
 
@@ -25,7 +26,7 @@ const AppendAddressScreen = () => {
         if (basicAddress === '' || detailAddress === '') return;
         onChange(null)
         onAppend(basicAddress + ' ' + detailAddress, basicAddress, contractionAddress);
-        navigation.navigate('MainBottomTab')
+        navigation.navigate('MajorStack')
     }
 
     const onBasic = () => {
@@ -34,7 +35,7 @@ const AppendAddressScreen = () => {
 
     return (
         <View style={{ flex: 1, backgroundColor: 'white' }}>
-            <LeftArrowHeader title='배송지 추가' goBack={() => navigation.goBack()} />
+            <LeftArrowHeader title='배송지 추가' goBack={() => navigation.dispatch(NavigationActions.back())} />
 
             <View style={{ width: '100%', marginTop: 20, paddingHorizontal: 30 }}>
                 <Text style={{ ...middleFont }}>기본주소</Text>

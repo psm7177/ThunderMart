@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react'
 import { View, Text, ScrollView, ToastAndroid } from 'react-native'
+
+import {NavigationRoute, NavigationActions} from 'react-navigation';
+
 import { shadow, defaultFont, WIDTH, cardHeight, borderBottom, alignCenter, titleFont } from '../../components/style'
 import LeftArrowHeader from '../../components/Header/LeftArrowHeader'
 import useNavigation from '../../hooks/useNavigation'
@@ -22,7 +25,7 @@ const AddressScreen = () => {
 
     const onChangeAddress = (id: number) => {
         onChange(id)
-        navigation.navigate('MainBottomTab')
+        navigation.navigate('MajorStack')
         shop.onChange(null)
         ToastAndroid.show('배송지가 변경되었습니다', ToastAndroid.SHORT)
     }
@@ -44,7 +47,7 @@ const AddressScreen = () => {
 
     return (
         <View style={{ flex: 1, backgroundColor: 'white' }}>
-            <LeftArrowHeader title='배송지' goBack={() => navigation.navigate('MainBottomTab')} />
+            <LeftArrowHeader title='배송지' goBack={() =>{navigation.dispatch(NavigationActions.back())}} />
             <ScrollView style={{ flex: 1 }}>
                 {presentAddress
                     ?

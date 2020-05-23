@@ -26,7 +26,11 @@ const styles = StyleSheet.create({
     },
     bigFont: {
         fontSize: 20,
-        fontWeight: 'bold'
+        fontWeight:'normal'
+    },
+    tinyFont:{
+        fontSize: 10,
+        fontWeight:'bold'
     },
     borderBottom: {
         borderBottomColor: '#dbdbdb',
@@ -61,6 +65,7 @@ export const defaultFont = styles.defaultFont;
 export const titleFont = styles.titleFont;
 export const bigFont = styles.bigFont;
 export const middleFont = styles.middleFont;
+export const tinyFont = styles.tinyFont;
 
 export const borderBottom = styles.borderBottom;
 
@@ -90,6 +95,7 @@ export default {
     defaultFont,
     titleFont,
     bigFont,
+    tinyFont,
     borderBottom,
     middleFont,
     cardHeight,

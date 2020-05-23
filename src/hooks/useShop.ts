@@ -10,8 +10,7 @@ export default function useShop() {
     const dispatch = useDispatch();
 
     const onChange = useCallback((shopType: shopNameType | null) => dispatch(change(shopType)), [dispatch]);
-
-
+9
     return {
         shopType,
         onChange

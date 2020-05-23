@@ -14,7 +14,7 @@ import CartScreen from './CartScreen'
 import OrderHistoryScreen, {
     OrderHistoryDetailScreen
 } from './OrderHistoryScreen';
-import MoreScreen from './MoreScreen';
+import ProfileScreen from './ProfileScreen';
 
 import SignInScreen, {
     SignUpPolicyScreen,
@@ -38,6 +38,7 @@ import OrderScreen, {
 
 import OrderOptionScreen from './OrderOptionScreen'
 import CoffeeFlexScreen from './CoffeeFlexScreen'
+import MartScreen from './MartScreen';
 
 const HomeStack = createStackNavigator(
     {
@@ -79,56 +80,18 @@ const OrderHistoryStack = createStackNavigator(
     }
 )
 
-const MoreStack = createStackNavigator(
+const ProfileStack = createStackNavigator(
     {
-        MoreScreen
+        ProfileScreen
     },
     {
-        initialRouteName: 'MoreScreen',
+        initialRouteName: 'ProfileScreen',
         defaultNavigationOptions: {
             headerShown: false
         },
         transitionConfig: () => fromRight()
     }
 )
-
-const MainBottomTab = createBottomTabNavigator(
-    {
-        HomeStack,
-        CartStack,
-        OrderHistoryStack,
-        MoreStack
-    },
-    {
-        initialRouteName: 'HomeStack',
-        defaultNavigationOptions: ({ navigation }) => ({
-            tabBarIcon: ({ focused, horizontal, tintColor }) => {
-                const { routeName } = navigation.state;
-                let iconName: string = '';
-                let size = 28;
-                if (routeName === 'HomeStack') {
-                    iconName = 'home'
-                } else if (routeName === 'CartStack') {
-                    iconName = 'shoppingcart'
-                } else if (routeName === 'OrderHistoryStack') {
-                    iconName = 'bars'
-                } else if (routeName === 'MoreStack') {
-                    iconName = 'ellipsis1'
-                }
-                return <Icon name={iconName} size={size} color={focused ? '#000' : '#00000080'} />;
-            },
-        }),
-        tabBarOptions: {
-            showLabel: false,
-            style: {
-                backgroundColor: 'white',
-                height: headerHeight,
-                borderTopColor: '#dbdbdb',
-                borderTopWidth: 0.5,
-            }
-        },
-    }
-);
 
 const SignStack = createStackNavigator(
     {
@@ -186,14 +149,45 @@ const ItemSearchStack = createStackNavigator(
     }
 )
 
+const MartStack = createStackNavigator(
+    {
+        MartScreen
+    },
+    {
+    initialRouteName: 'MartScreen',
+        defaultNavigationOptions: {
+            headerShown: false
+        },
+        transitionConfig: () => fromRight()
+    }
+)
+
+const MojarStack = createStackNavigator(
+    {
+        HomeStack,
+        CartStack,
+        OrderHistoryStack,
+        ProfileStack,
+        ItemSearchStack,
+        AddressStack,
+    },
+    {
+        initialRouteName: 'HomeStack',
+        defaultNavigationOptions: {
+            headerShown: false
+        },
+        transitionConfig: () => fromRight()
+    }
+);
+
+
 
 const MainStack = createStackNavigator(
     {
-        MainBottomTab,
+        MojarStack,
+        MartStack,
         SignStack,
-        AddressStack,
         PhoneStack,
-        ItemSearchStack,
         OrderHistoryDetailScreen,
         OrderScreen,
         OrderResultScreen,
@@ -201,7 +195,7 @@ const MainStack = createStackNavigator(
         CoffeeFlexScreen
     },
     {
-        initialRouteName: 'MainBottomTab',
+        initialRouteName: 'MojarStack',
         defaultNavigationOptions: {
             headerShown: false
         },

@@ -9,6 +9,7 @@ import DefaultActivityIndicator from '../../../components/Indicator/DefaultActiv
 import getItemByKeyword from './getItemByKeyword'
 import { toastMessage } from '../../../components/functions'
 import useShop from '../../../hooks/useShop'
+import { NavigationActions } from 'react-navigation'
 
 type NavigationParams = {
     text: string
@@ -25,7 +26,7 @@ const ItemSearchedScreen = () => {
     const init = async () => {
         try {
             if (shopType == null || shopType == 'ELSE') {
-                navigation.goBack()
+                navigation.dispatch(NavigationActions.back())
                 return
             }
             const keyword: string = navigation.state.params?.text as string
@@ -34,7 +35,7 @@ const ItemSearchedScreen = () => {
             setData(res)
             setLoading(false)
         } catch (error) {
-            navigation.goBack()
+            navigation.dispatch(NavigationActions.back())
             toastMessage('오류')
         }
     }
@@ -47,7 +48,7 @@ const ItemSearchedScreen = () => {
         <View style={{ flex: 1, backgroundColor: 'white' }}>
             <LeftArrowHeader
                 title={navigation.state.params?.text}
-                goBack={() => navigation.goBack()}
+                goBack={() => navigation.dispatch(NavigationActions.back())}
             />
             {loading ?
                 <DefaultActivityIndicator />

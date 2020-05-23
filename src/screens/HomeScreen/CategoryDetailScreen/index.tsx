@@ -10,6 +10,7 @@ import DefaultActivityIndicator from '../../../components/Indicator/DefaultActiv
 import getItemByCategory from './getItemByCategory';
 import { toastMessage } from '../../../components/functions';
 import useShop from '../../../hooks/useShop';
+import { NavigationActions } from 'react-navigation';
 
 type NavigationParams = {
     category: string,
@@ -33,7 +34,7 @@ const CategoryDetailScreen = () => {
             setData(res)
             setLoading(false)
         } catch (error) {
-            navigation.goBack()
+            navigation.dispatch(NavigationActions.back())
             toastMessage('오류')
         }
     }
@@ -44,7 +45,7 @@ const CategoryDetailScreen = () => {
 
     return (
         <View style={{ flex: 1, backgroundColor: 'white' }}>
-            <LeftArrowHeader title={navigation.state.params?.category} goBack={() => navigation.goBack()} />
+            <LeftArrowHeader title={navigation.state.params?.category} goBack={() => navigation.dispatch(NavigationActions.back())} />
             {loading ?
                 <DefaultActivityIndicator />
                 :

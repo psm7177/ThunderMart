@@ -71,7 +71,7 @@ const PhoneScreen = () => {
         goBack();
     }
     const goBack = () => {
-        navigation.navigate('MainBottomTab')
+        navigation.navigate('MajorStack')
     }
 
     const onResend = () => {
@@ -84,7 +84,7 @@ const PhoneScreen = () => {
 
     return (
         <View style={{ flex: 1, backgroundColor: 'white' }}>
-            <LeftArrowHeader title='휴대폰번호 변경' goBack={() => navigation.navigate('MainBottomTab')} />
+            <LeftArrowHeader title='휴대폰번호 변경' goBack={() => navigation.navigate('MajorStack')} />
             <View style={{ width: '100%', marginTop: 20, paddingHorizontal: 30 }}>
                 {
                     !send

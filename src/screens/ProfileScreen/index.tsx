@@ -6,37 +6,47 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
 import useAuth from '../../hooks/useAuth'
 import { reset2SignIn } from '../../components/navigationResetActions'
 
+import MajorHeader from '../../components/Header/MajorHeader'
+import DefaultHeader from '../../components/Header/DefaultHeader'
+import Portrait from './Portrait';
 const userName = '홍길동'
 
 
 
-const MoreScreen = () => {
+const ProfileScreen = () => {
     const navigation = useNavigation()
     const { onSignOut } = useAuth()
 
     const menuList = [
         {
+            name: '프로필 설정',
+            onClick: () => {}
+        },
+        {
             name: '배송지 관리',
             onClick: () => navigation.navigate('AddressStack')
         },
-        // {
-        //     name: '배송 가능 지역',
-        //     onClick: () => { }
-        // },
-        // {
-        //     name: '자주 하시는 질문',
-        //     onClick: () => { }
-        // },
-        // {
-        //     name: '개선 사항 요청',
-        //     onClick: () => { }
-        // },
         {
             name: '친구에게 추천하기',
             onClick: () => {
                 Share.share({
                     message: 'https://play.google.com/store/apps/details?id=com.saladfactory.thundermart'
                 })
+            }
+        },
+        {
+            name: '자주 하시는 질문',
+            onClick: () => {
+            }
+        },
+        {
+            name: '고객센터',
+            onClick: () => {
+            }
+        },
+        {
+            name: '사업자 정보',
+            onClick: () => {
             }
         },
         {
@@ -50,11 +60,13 @@ const MoreScreen = () => {
 
     return (
         <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
-            <View style={{ backgroundColor: color1, width: '100%', height: headerHeight, alignItems: 'center', justifyContent: 'center' }}>
-                <Text style={{ ...titleFont, color: fontColor1 }}>더보기</Text>
-            </View>
-
-
+            <DefaultHeader>
+                <View style={{flex:1,justifyContent:"center",alignItems:"center"}}>
+                    <Text style={{ ...titleFont, color: fontColor1 }}>더보기</Text>
+                </View>
+            </DefaultHeader>
+            <MajorHeader/>
+            <Portrait/>
             {menuList.map((item, index) =>
                 <TouchableWithoutFeedback
                     key={index}
@@ -70,4 +82,4 @@ const MoreScreen = () => {
     )
 }
 
-export default MoreScreen
+export default ProfileScreen
